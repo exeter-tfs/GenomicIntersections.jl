@@ -1,6 +1,6 @@
 
 
-intervals(table; off = 0) = @with table IntervalCollection(Interval.(table.chrom, table.start .+ off, table.stop, '.', 1:size(table, 1)))
+intervals(table; off = 0) = IntervalCollection(Interval.(table.chrom, table.start .+ off, table.stop, '.', 1:size(table, 1)))
 span(interval) = rightposition(interval) - leftposition(interval) + 1
 intersectinginterval(ia, ib) = Interval(seqname(ia), max(leftposition(ia), leftposition(ib)), min(rightposition(ia), rightposition(ib)))
 @inline unionlocation(a, b) = min(a.start, b.start):max(a.stop, b.stop)

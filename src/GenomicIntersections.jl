@@ -1,6 +1,12 @@
 module GenomicIntersections
 
-# Write your package code here.
+
+using DataFrames, GenomicFeatures
+
+export countoverlap, intersecttable, overlappinglocations, peakintersect
+
+include("intersections.jl")
+
 
 
 end

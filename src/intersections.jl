@@ -85,5 +85,5 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
 
     membership =  DataFrame([1(l .∈ combpeaks.Origin) for l in labels], Symbol.(labels))
 
-    [comb_peaks[!, Not([:Group, :Origin])] membership]
+    [combpeaks[!, Not([:Group, :Origin])] membership]
 end

@@ -1,7 +1,7 @@
 module GenomicIntersections
 
 
-using DataFrames, GenomicFeatures
+using DataFrames, GenomicFeatures, Statistics
 
 export countoverlap, intersecttable, overlappinglocations, peakintersect
 

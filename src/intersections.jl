@@ -79,7 +79,7 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
                     :chrom => first => :chrom,
                     :start => minimum => :start,
                     :stop => minimum => :stop,
-                    :nrow => :TotalPeaks,
+                    nrow => :TotalPeaks,
                     :score => mean => :score,
                     :Origin => Ref => :Origin)
 

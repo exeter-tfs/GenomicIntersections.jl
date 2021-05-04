@@ -71,7 +71,7 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
 
     sort!(allpeaks, [:chrom, :start, :stop, :Origin]);
     chroms    = allpeaks.chrom::Vector{String}
-    locations = [(a+1):b for (a, b) in zip(all_peaks.start, all_peaks.stop)]::Vector{UnitRange{Int}}
+    locations = [(a+1):b for (a, b) in zip(allpeaks.start, allpeaks.stop)]::Vector{UnitRange{Int}}
     allpeaks.Group = overlappinglocations(chroms, locations);
 
 
@@ -83,7 +83,7 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
                     :score => mean => :score,
                     :Origin => Ref => :Origin)
 
-    membership =  DataFrame([1(l .∈ comb_peaks.Origin) for l in labels], Symbol.(labels))
+    membership =  DataFrame([1(l .∈ combpeaks.Origin) for l in labels], Symbol.(labels))
 
     [comb_peaks[!, Not([:Group, :Origin])] membership]
 end

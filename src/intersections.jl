@@ -87,3 +87,13 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
 
     [combpeaks[!, Not([:Group, :Origin])] membership]
 end
+
+function markintersection!(tableA, tableB, label=:Inter)
+    ivA = intervals(tableA)::IntervalCollection{Int64}
+    ivB = intervals(tableB)::IntervalCollection{Int64}
+    tableA[!, label] = falses(size(tableA, 1))
+    for (ia, ib) in eachoverlap(ivA, ivB)
+        tableA[metadata(ia), label] = true
+    end
+    tableA
+end

@@ -9,6 +9,7 @@ GenomicFeatures = "899a7d2d-5c61-547b-bef9-6698a8d05446"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
+GenomicFeatures = "2"
 julia = "1"
 
 [extras]

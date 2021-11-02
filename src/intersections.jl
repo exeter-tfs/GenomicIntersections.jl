@@ -97,3 +97,15 @@ function markintersection!(tableA, tableB, label=:Inter)
     end
     tableA
 end
+
+
+function annotatecol!(tableA, tableB, colb_in, cola_out ; default=0)
+    ivA = intervals(tableA)::IntervalCollection{Int64}
+    ivB = intervals(tableB)::IntervalCollection{Int64}
+    tableA[!, label] = fill(default, size(tableA, 1))
+
+    for (ia, ib) in eachoverlap(ivA, ivB)
+        tableA[metadata(ia), cola_out] = tableB[metadata(ib), colb_in]
+    end
+    tableA
+end

@@ -78,7 +78,7 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
     combpeaks = combine(groupby(allpeaks, :Group),
                     :chrom => first => :chrom,
                     :start => minimum => :start,
-                    :stop => minimum => :stop,
+                    :stop => maximum => :stop,
                     nrow => :TotalPeaks,
                     :score => mean => :score,
                     :Origin => Ref => :Origin)
@@ -106,6 +106,17 @@ function annotatecol!(tableA, tableB, colb_in, cola_out ; default=0)
 
     for (ia, ib) in eachoverlap(ivA, ivB)
         tableA[metadata(ia), cola_out] = tableB[metadata(ib), colb_in]
+    end
+    tableA
+end
+
+
+function countintersection!(tableA, tableB, label=:Count)
+    ivA = GenomicIntersectoins.intervals(tableA)::IntervalCollection{Int64}
+    ivB = GenomicIntersectoins.intervals(tableB)::IntervalCollection{Int64}
+    tableA[!, label] = zeros(Int, size(tableA, 1))
+    for (ia, ib) in eachoverlap(ivA, ivB)
+        tableA[metadata(ia), label] += 1
     end
     tableA
 end

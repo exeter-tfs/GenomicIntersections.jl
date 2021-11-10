@@ -70,8 +70,8 @@ function peakintersect(labels::Vector{T}, peaks::Vector{DataFrame}) where {T}
     allpeaks = reduce(vcat, peaks)
 
     sort!(allpeaks, [:chrom, :start, :stop, :Origin]);
-    chroms    = allpeaks.chrom::Vector{String}
-    locations = [(a+1):b for (a, b) in zip(allpeaks.start, allpeaks.stop)]::Vector{UnitRange{Int}}
+    chroms    = allpeaks.chrom #::Vector{String}
+    locations = [(a+1):b for (a, b) in zip(allpeaks.start, allpeaks.stop)] #::Vector{UnitRange{Int}}
     allpeaks.Group = overlappinglocations(chroms, locations);
 
 

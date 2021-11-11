@@ -112,8 +112,8 @@ end
 
 
 function countintersection!(tableA, tableB, label=:Count)
-    ivA = GenomicIntersectoins.intervals(tableA)::IntervalCollection{Int64}
-    ivB = GenomicIntersectoins.intervals(tableB)::IntervalCollection{Int64}
+    ivA = intervals(tableA)::IntervalCollection{Int64}
+    ivB = intervals(tableB)::IntervalCollection{Int64}
     tableA[!, label] = zeros(Int, size(tableA, 1))
     for (ia, ib) in eachoverlap(ivA, ivB)
         tableA[metadata(ia), label] += 1
